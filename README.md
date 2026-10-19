@@ -89,7 +89,7 @@ MvcOnlineTicariOtomasyon/
 
 - [ ] Hash passwords (e.g. PBKDF2/BCrypt) instead of storing them as plain text
 - [ ] Decrease product stock automatically when a sale is made
-- [ ] Apply `[Authorize]` and role checks to all admin controllers
+- [ ] Restrict admin controllers to the admin role so logged-in customers cannot access them
 - [ ] Introduce a repository/service layer to separate data access from controllers
 - [ ] Add unit tests
 - [ ] Migrate to ASP.NET Core

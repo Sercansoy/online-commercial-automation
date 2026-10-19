@@ -1,0 +1,99 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Class.SaleTransaction
+@{
+    ViewBag.Title = "FindSale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-sm border-0" style="border-radius: 10px; overflow: hidden;">
+
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h4 class="mb-0 font-weight-bold" style="letter-spacing: 0.5px;">Update Sale Transaction</h4>
+                </div>
+
+                <div class="card-body px-5 py-4">
+                    @using (Html.BeginForm("UpdateSale", "Sales", FormMethod.Post))
+                    {
+                         @Html.HiddenFor(x => x.SaleID)
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Product</label>
+                            @Html.DropDownListFor(x => x.Productid, (List<SelectListItem>)ViewBag.ValueProduct, "Select Product", new { @class = "form-control custom-input-sm" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Customer</label>
+                            @Html.DropDownListFor(x => x.Customerid, (List<SelectListItem>)ViewBag.ValueCustomer, "Select Customer", new { @class = "form-control custom-input-sm" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Staff</label>
+                            @Html.DropDownListFor(x => x.Staffid, (List<SelectListItem>)ViewBag.ValueStaff, "Select Staff", new { @class = "form-control custom-input-sm" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Quantity</label>
+                            @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control custom-input-sm" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Price</label>
+                            @Html.TextBoxFor(x => x.Price, new { @class = "form-control custom-input-sm" })
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Total Amount</label>
+                            @Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control custom-input-sm" })
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="small font-weight-bold text-dark">Date</label>
+                            @Html.TextBoxFor(x => x.Date, new { @class = "form-control custom-input-sm" })
+                        </div>
+
+                        <div class="text-center mt-2">
+                            <button class="btn btn-info text-white px-4 py-2 shadow-sm hover-button" style="border-radius: 6px; font-weight: 600; width: 100%; background-color: #0dcaf0; border:none;">
+                                <i class="fas fa-pen-to-square mr-2"></i> Update Sale
+                            </button>
+                            <a href="/Sales/Index" class="text-muted small font-weight-bold text-decoration-none">
+                                <i class="fas fa-arrow-left mr-1"></i> Back to Sales List
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Daha ince ve kompakt inputlar */
+    .custom-input-sm {
+        border: 1px solid #d1d1d1;
+        border-radius: 6px;
+        padding: 8px 12px;
+        height: auto;
+        font-size: 0.9rem;
+        background-color: #f9f9f9;
+        transition: all 0.2s ease;
+    }
+
+        .custom-input-sm:focus {
+            border-color: #007bff;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.1);
+            outline: none;
+        }
+
+    /* Başlıkların puntosunu küçülttük ama kalın */
+    label.small {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+
+    .hover-button:hover {
+        opacity: 0.9;
+        transform: scale(1.01);
+        transition: 0.2s;
+    }
+    </style>

@@ -1,0 +1,60 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Class.Shipment
+@{
+    ViewBag.Title = "NewShipment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h2 class="card-title mb-0 font-weight-bold">Add New Shipment</h2>
+                </div>
+
+                <div class="card-body text-center px-lg-5 py-5">
+                    <p class="text-muted mb-4">Enter the details below to create a new shipment record.</p>
+
+                    <form method="post">
+                        <div class="form-group mx-auto text-left" style="max-width: 600px;">
+                            <div class="mb-3">
+                                @Html.LabelFor(x => x.TrackingCode, "Tracking Code", new { @class = "font-weight-bold h5 mb-2" })
+                                <input type="text" name="TrackingCode" class="form-control"
+                                       value="@ViewBag.TrackingCode" readonly />
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(x => x.Staff, "Staff Name", new { @class = "font-weight-bold h5 mb-2" })
+                                @Html.TextBoxFor(x => x.Staff, new { @class = "form-control", placeholder = "Enter staff name..." })
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(x => x.Customer, "Customer", new { @class = "font-weight-bold h5 mb-2" })
+                                @Html.TextBoxFor(x => x.Customer, new { @class = "form-control", placeholder = "Enter customer name..." })
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(x => x.Date, "Shipment Date", new { @class = "font-weight-bold h5 mb-2" })
+                                <input class="form-control" type="date" name="Date" />
+                            </div>
+
+                            <div class="mb-3">
+                                @Html.LabelFor(x => x.Detail, "Detail", new { @class = "font-weight-bold h5 mb-2" })
+                                @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", rows = "3", placeholder = "Enter shipment details..." })
+                            </div>
+
+                            <small class="form-text text-muted mt-2 text-center">Ensure all information is correct before saving the shipment.</small>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-info btn-lg px-5 shadow-sm">
+                                <i class="fas fa-plus-circle"></i> Save Shipment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

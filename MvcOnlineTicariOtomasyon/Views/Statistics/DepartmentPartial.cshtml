@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MvcOnlineTicariOtomasyon.Models.Class.DepartmentViewModel>
+
+@{
+    // Maksimum count değerini bul (progress bar'ı buna göre ölçekle)
+    int maxCount = Model.Any() ? Model.Max(d => d.count) : 1;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Department Staff Counts</h3>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Department</th>
+                    <th>Progress Bar</th>
+                    <th style="width: 40px">Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int i = 1; }
+                @foreach (var x in Model)
+                {
+                    // Progress bar yüzdesi (max değere göre)
+                    int percentage = maxCount > 0 ? (int)((double)x.count / maxCount * 100) : 0;
+
+                    // Count'a göre renk belirle
+                    string badgeColor, barColor;
+                    if (x.count >= 5)
+                    {
+                        badgeColor = "bg-danger"; 
+                        barColor = "bg-danger";
+                    }
+                    else if (x.count >= 3)
+                    {
+                        badgeColor = "bg-warning";  
+                        barColor = "bg-warning";
+                    }
+                    else
+                    {
+                        badgeColor = "bg-primary";
+                        barColor = "bg-primary";
+                    }
+
+                    <tr>
+                        <td>@(i++).</td>
+                        <td>@x.Department</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar @barColor"
+                                     style="width: @percentage%"
+                                     title="@x.count">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge @badgeColor">@x.count</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

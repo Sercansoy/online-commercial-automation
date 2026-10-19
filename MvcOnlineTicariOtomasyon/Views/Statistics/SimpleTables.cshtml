@@ -1,0 +1,279 @@
+﻿@model IEnumerable<MvcOnlineTicariOtomasyon.Models.Class.GroupCountViewModel>
+@{
+    ViewBag.Title = "SimpleTables";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Simple Tables</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Simple Tables</h1>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Category Tables</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Category Name</th>
+                                            <th>Progress Bar</th>
+                                            <th style="width: 40px">Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Update software</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-danger">55%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Clean database</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning">70%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Cron job running</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-primary">30%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Fix and squish bugs</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">90%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.card -->
+                        @Html.Action("DepartmentPartial", "Statistics")
+
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Customer City Table</h3>
+
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>City</th>
+                                            <th>Progress Bar</th>
+                                            <th style="width: 40px">Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int rowNumber = 0;
+                                            int maxCount = Model.Any() ? Model.Max(x => x.Count) : 1;
+                                        }
+                                        @foreach (var x in Model)
+                                        {
+                                            int progressPercent = maxCount > 0
+                                                ? (int)Math.Round((double)x.Count / maxCount * 100)
+                                                : 0;
+
+                                            string badgeColor;
+                                            string barColor;
+                                            if (x.Count <= 1)
+                                            {
+                                                badgeColor = "bg-primary";
+                                                barColor = "bg-primary";
+                                            }
+                                            else if (x.Count == 2)
+                                            {
+                                                badgeColor = "bg-primary";
+                                                barColor = "bg-primary";
+                                            }
+                                            else if (x.Count == 4)
+                                            {
+                                                badgeColor = "bg-success";
+                                                barColor = "bg-success";
+                                            }
+                                            else
+                                            {
+                                                badgeColor = "bg-danger";
+                                                barColor = "bg-danger";
+                                            }
+
+                                            <tr>
+                                                <td>@{rowNumber++;} @rowNumber.</td>
+                                                <td>@x.City</td>
+                                                <td>
+                                                    <div class="progress progress-xs">
+                                                        <div class="progress-bar @barColor"
+                                                             role="progressbar"
+                                                             style="width: @progressPercent%"
+                                                             aria-valuenow="@progressPercent"
+                                                             aria-valuemin="0"
+                                                             aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge @badgeColor">@x.Count</span></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Striped Full Width Table</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Task</th>
+                                            <th>Progress</th>
+                                            <th style="width: 40px">Label</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Update software</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-danger">55%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Clean database</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning">70%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Cron job running</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-primary">30%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Fix and squish bugs</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">90%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                @Html.Action("CustomersPartial", "Statistics")
+                <!-- /.row -->
+                @Html.Action("ProductsPartial", "Statistics")
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+</body>
+</html>
+
+

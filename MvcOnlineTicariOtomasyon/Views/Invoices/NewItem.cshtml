@@ -1,0 +1,92 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Class.InvoiceItem
+@{
+    ViewBag.Title = "NewItem";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<div class="container-fluid pt-4 px-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-9 col-lg-11 col-12">
+
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h4 class="mb-0 text-dark font-weight-bold">Create New Invoice Item</h4>
+                <a href="/Invoices/Index" class="btn btn-sm btn-outline-secondary px-3">
+                    <i class="fas fa-arrow-left fa-sm mr-1"></i> Back to Invoices
+                </a>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-5">
+
+                    @using (Html.BeginForm("NewItem", "Invoices", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-4">
+                                <label class="form-label text-muted font-weight-bold small">Description</label>
+                                @Html.TextBoxFor(x => x.Description, new { @class = "form-control custom-form-input" })
+                            </div>
+                            <div class="col-md-6 form-group mb-4">
+                                <label class="form-label text-muted font-weight-bold small">Quantity</label>
+                                @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control custom-form-input" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-4">
+                                <label class="form-label text-muted font-weight-bold small">Unit Price</label>
+                                @Html.TextBoxFor(x => x.UnitPrice, new { @class = "form-control custom-form-input" })
+                            </div>
+                            <div class="col-md-6 form-group mb-4">
+                                <label class="form-label text-muted font-weight-bold small">Total Amount</label>
+                                @Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control custom-form-input" })
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(x => x.Invoiceid)
+
+                        <hr class="my-4 opacity-50">
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary px-5 py-2-5 font-weight-bold shadow-sm" style="font-size: 0.95rem; border-radius: 4px;">
+                                <i class="fas fa-save mr-2"></i> Save New Item Invoice
+                            </button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-form-input {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        height: auto;
+        background-color: #fff;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .custom-form-input:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            background-color: #fff;
+        }
+
+    .form-label {
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .py-2-5 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+

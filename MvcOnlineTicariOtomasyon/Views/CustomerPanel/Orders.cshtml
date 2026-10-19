@@ -1,0 +1,29 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<SaleTransaction>
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<br />
+<h2>Orders History</h2>
+<br />
+<table class="table table-hover">
+
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Staff</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Product.ProductName</td>
+            <td>@x.Price</td>
+            <td>@x.Quantity</td>
+            <td>@x.Staff.StaffName @x.Staff.StaffSurname</td>
+            <td>@Convert.ToDateTime(x.Date).ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>

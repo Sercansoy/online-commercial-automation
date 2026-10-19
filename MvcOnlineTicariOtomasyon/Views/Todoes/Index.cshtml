@@ -1,0 +1,156 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<Todo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>@ViewBag.Product</h3>
+                                <p>Total Product</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>@ViewBag.City<sup style="font-size: 20px"></sup></h3>
+                                <p>Total Cities</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>@ViewBag.Customer</h3>
+                                <p>User Registrations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>@ViewBag.Categories</h3>
+                                <p>Total Categories</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <section class="col-lg-7 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="ion ion-clipboard mr-1"></i>
+                                    To Do List
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="todo-list" data-widget="todo-list">
+                                    @foreach (var x in Model)
+                                    {
+                                        <li id="li_@x.TodoId" class="@(x.Status ? "done" : "")">
+                                            <span class="handle">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo_@x.TodoId" id="todoCheck_@x.TodoId" onchange="updateStatus(@x.TodoId, this.checked)">
+                                                <label for="todoCheck_@x.TodoId"></label>
+                                            </div>
+                                            <span class="text">@x.Title</span>
+                                            @if (x.Status)
+                                            {
+                                                <small class="badge badge-success" id="badge_@x.TodoId">Completed</small>
+                                            }
+                                            else
+                                            {
+                                                <small class="badge badge-danger" id="badge_@x.TodoId">Pending</small>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="card-footer clearfix">
+                                <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+
+    <script>
+        function updateStatus(todoId, isChecked) {
+            $.ajax({
+                url: '/Todoes/UpdateStatus',
+                type: 'POST',
+                data: { id: todoId, status: isChecked ? 1 : 0 },
+                success: function () {
+                    var badge = $('#badge_' + todoId);
+                    var li = $('#li_' + todoId);
+                    if (isChecked) {
+                        badge.removeClass('badge-danger').addClass('badge-success').text('Completed');
+                        li.addClass('done');
+                    } else {
+                        badge.removeClass('badge-success').addClass('badge-danger').text('Pending');
+                        li.removeClass('done');
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

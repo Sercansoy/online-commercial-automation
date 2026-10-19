@@ -1,0 +1,25 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<ShipmentTracking>
+
+@{
+    ViewBag.Title = "CustomerOrderTrackingDetail";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>Detail</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+
+        <tr>
+            <td>@x.StatusDetail</td>
+            <td>@x.Date</td>
+        </tr>
+    }
+</table>
+

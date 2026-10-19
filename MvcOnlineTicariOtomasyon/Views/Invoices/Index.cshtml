@@ -1,0 +1,79 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<Invoice>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>Serial / Sequence Number</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Total</th>
+        <th>Update</th>
+        <th>Detail</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.InvoiceSerialNumber @x.InvoiceSequenceNumber</td>
+            <td>@x.Date.ToString("d.MM.yyyy")</td>
+            <td>@x.Time</td>
+            <td>@x.Total.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+            <td>
+                <a href="/Invoices/FindInvoice/@x.InvoiceId" class="btn btn-warning">
+                    <i class="fas fa-edit"></i> Update
+                </a>
+            </td>
+            <td>
+                <a href="/Invoices/DetailInvoice/@x.InvoiceId" class="btn btn-info">
+                    <i class="fas fa-eye"></i> Detail
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Invoices/AddInvoice" class="btn btn-success">
+    <i class="fas fa-plus"></i> Create New Invoice
+</a>
+<br />
+<br />
+<button type="button" class="btn btn-warning" style="color:white; background-color:#d82929;" data-bs-toggle="modal" data-bs-target="#Modal1">
+    Popup Page
+</button>
+
+<div class="modal" id="Modal1" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Popup Dialogue Page</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Serial Number</td>
+                        <td>Sequence Number</td>
+                        <td>Total</td>
+                    </tr>
+                    @foreach (var x in Model)
+                    {
+                        <tr>
+                            <td>
+                                @x.InvoiceSerialNumber
+                            </td>
+                            <td>
+                                @x.InvoiceSequenceNumber
+                            </td>
+                            <td>
+                                @x.Total.ToString("C", new System.Globalization.CultureInfo("en-US"))
+                            </td>
+                        </tr>
+                     
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

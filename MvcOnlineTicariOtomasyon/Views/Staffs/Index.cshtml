@@ -1,0 +1,54 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<Staff>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Staff Name</th>
+        <th>Surname</th>
+        <th>Image</th>
+        <th>Department</th>
+        <th>Update</th>
+        <th>Sales History</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>
+                @d.StaffID
+            </td>
+            <td>
+                @d.StaffName
+            </td>
+            <td>
+                @d.StaffSurname
+            </td>
+            <td>
+                <img src="@d.StaffImage"
+                     alt = "No image"
+                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+            </td>
+            <td>
+                @d.Department.DepartmentName
+            </td>
+            <td>
+                <a href="/Staffs/FindStaff/@d.StaffID" class="btn btn-warning">
+                    <i class="fas fa-edit"></i> Update
+                </a>
+
+            </td>
+            <td>
+                <a href="/Departments/StaffSales/@d.StaffID" class="btn btn-info">
+                    <i class="fas fa-eye"></i> Detail
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="/Staffs/AddStaff/" class="btn btn-info">Add Staff</a>
+

@@ -1,0 +1,101 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Class.Invoice
+@{
+    ViewBag.Title = "FindInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
+
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0 font-weight-bold">
+                        <i class="fas fa-edit mr-2"></i> Update Invoice Details
+                    </h3>
+                </div>
+
+                <div class="card-body p-5">
+                    @using (Html.BeginForm("FindInvoice", "Invoices", FormMethod.Post))
+
+                    {
+                        @Html.HiddenFor(x => x.InvoiceId)
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Invoice Serial Number <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.InvoiceSerialNumber, new { @class = "form-control custom-input border-left-0", placeholder = "e.g. A-B" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Invoice Sequence Number <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.InvoiceSequenceNumber, new { @class = "form-control custom-input border-left-0", placeholder = "e.g. 100234" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.Date, "{0:yyyy-MM-dd}", new { @class = "form-control custom-input border-left-0", type = "date" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Time <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.Time, new { @class = "form-control custom-input border-left-0", type = "time" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Tax Office <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.TaxOffice, new { @class = "form-control custom-input border-left-0", placeholder ="Enter tax office" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Delivered By <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.DeliveredBy, new { @class = "form-control custom-input border-left-0", placeholder ="Staff name" })
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark ml-1">Received By <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-right-0"><i class="fas fa-tag text-primary"></i></span>
+                                </div>
+                                @Html.TextBoxFor(x => x.ReceivedBy, new { @class = "form-control custom-input border-left-0", placeholder ="Customer/Staff name"})
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <button class="btn btn-success text-white py-3 shadow-sm hover-button mb-3" style="border-radius: 8px; font-weight: 600; width: 100%; max-width: 400px; border:none; background-color: #28a745;">
+                                <i class="fas fa-sync-alt mr-2"></i> Update Invoice
+                            </button>
+                            <a href="/Invoices/Index" class="text-muted small font-weight-bold text-decoration-none">
+                                <i class="fas fa-arrow-left mr-1"></i> Back to Invoices List
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

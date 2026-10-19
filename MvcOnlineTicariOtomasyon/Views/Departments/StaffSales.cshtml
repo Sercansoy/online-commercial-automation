@@ -1,0 +1,100 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@model List<SaleTransaction>
+@{
+    ViewBag.Title = "StaffSales";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-2 text-dark font-weight-normal mb-3">Staff Sales Transactions</h2>
+
+            @*Personel Bilgi Paneli*@
+            <div class="p-3 my-3" style="background-color: #eeeeee; border-radius: 5px; border: 1px solid #ddd;">
+                <span class="text-secondary" style="font-size: 1.1rem;">
+                    Staff Name: @ViewBag.dstaff
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered custom-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Customer</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td>@x.Product.ProductName</td>
+                                <td>@x.Customer.CustomerName @x.Customer.CustomerSurname</td>
+                                <td>@x.Price.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                                <td>@x.Quantity</td>
+                                <td class="font-weight-bold">@x.TotalAmount.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                                <td>@x.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td class="text-center">
+                                    <a href="#" class="btn btn-print">Print</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Başlık stili */
+    h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        letter-spacing: -0.5px;
+    }
+
+    /* Tablo Başlıkları*/
+    .custom-table thead th {
+        background-color: #f8f9fa !important;
+        color: #333;
+        font-weight: 700;
+        border-bottom: 2px solid #dee2e6;
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    /* Tablo Satırları */
+    .custom-table td {
+        padding: 12px 15px;
+        vertical-align: middle;
+        color: #555;
+    }
+
+    /* Print Butonu */
+    .btn-print {
+        background-color: #007bff;
+        color: white !important;
+        border-radius: 4px;
+        padding: 5px 20px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.2s;
+    }
+
+        .btn-print:hover {
+            background-color: #0062cc;
+        }
+
+    /* Tablo kenarlıkları daha soft */
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+</style>
+

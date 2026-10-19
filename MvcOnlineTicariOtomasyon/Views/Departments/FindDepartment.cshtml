@@ -1,0 +1,47 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Class.Department
+@{
+    ViewBag.Title = "Update Department";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm border-warning">
+                <div class="card-header bg-warning text-dark text-center py-4">
+                    <h2 class="card-title mb-0 font-weight-bold">
+                        <i class="fas fa-edit"></i> Department Category
+                    </h2>
+                </div>
+
+                <div class="card-body text-center px-lg-5 py-5">
+                    <p class="text-muted mb-5">Make your changes to the department name below and save them instantly.</p>
+
+                    @using (Html.BeginForm("UpdateDepartment", "Departments", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(x => x.DepartmentID)
+
+                        <div class="form-group mx-auto" style="max-width: 650px;">
+                            <label class="font-weight-bold h4 mb-4 text-secondary">Department Name</label>
+
+                            @Html.TextBoxFor(x => x.DepartmentName, new
+                            {
+                                @class = "form-control text-center form-control-lg border-warning shadow-sm",
+                                placeholder = "Type new department name...",
+                                style = "border-width: 2px; height: 60px; font-size: 1.4rem;"
+                            })
+
+                        <small class="form-text text-muted mt-3">This update will be reflected in the relevant department..</small>
+                        </div>
+
+                        <div class="mt-5 mb-4">
+                            <button class="btn btn-warning btn-lg px-5 py-3 shadow font-weight-bold text-dark" style="min-width: 250px;">
+                                <i class="fas fa-check-circle"></i> Save Changes
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class;
+@using PagedList
+@using PagedList.Mvc
+@model  PagedList.IPagedList<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>Categories</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var c in Model)
+    {
+        <tr>
+            <td>
+                @c.CategoryName
+            </td>
+            <td>
+                <a href="/Categories/FindCategory/@c.CategoryID" class="btn btn-warning"> @* Update Button *@
+                     <i class="fas fa-edit"></i> Update</a> 
+            
+            </td>
+            <td> 
+                <a href="/Categories/RemoveCategory/@c.CategoryID" class="btn btn-danger"> @* Delete Button *@
+                     <i class="fas fa-trash-alt"></i> Delete</a> 
+            </td>
+        </tr>
+    }
+    
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))
+<a href="/Categories/AddCategory" class="btn btn-primary">Add Category</a> 
+
+

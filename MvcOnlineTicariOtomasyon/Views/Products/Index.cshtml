@@ -1,0 +1,66 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Class
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Stock</th>
+        <th>Cost Price</th>
+        <th>Selling Price</th>
+        <th>Category</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Make A Sale</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+
+
+            <td>
+                @p.ProductName
+            </td>
+            <td>
+                @p.Brand
+            </td>
+            <td>
+                @p.Stock
+            </td>
+            <td>
+                @p.CostPrice.ToString("C", new System.Globalization.CultureInfo("en-US"))
+            </td>
+            <td>
+                @p.SellingPrice.ToString("C", new System.Globalization.CultureInfo("en-US"))
+            </td>
+            <td>
+                @p.Category.CategoryName
+            </td>
+            <td>
+                <a href="/Products/FindProduct/@p.ProductID " class="btn btn-warning">
+                    <i class="fas fa-edit"></i> Update
+                </a>
+            </td>
+            <td>
+                <a href="/Products/DeleteProduct/@p.ProductID " class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            </td>
+            <td>
+                <a href="/Products/MakeSale/@p.ProductID " class="btn btn-success">
+                    <i class="fas fa-shopping-cart"></i> Sale
+                </a>
+            </td>
+
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+<a href="/Products/AddProduct" class="btn btn-info">Add Product</a>
+

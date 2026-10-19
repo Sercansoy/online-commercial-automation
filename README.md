@@ -81,9 +81,9 @@ MvcOnlineTicariOtomasyon/
 ## Screenshots
 
 <!-- Add 3-4 screenshots here: statistics dashboard, product list, customer panel, shipment tracking -->
-| Statistics Dashboard | Product Management |
-|---|---|
-| ![Dashboard](docs/dashboard.png) | ![Products](docs/products.png) |
+| Statistics Dashboard | Product Management | Customer Panel |
+|---|---|---|
+| ![Dashboard](docs/dashboard.png) | ![Products](docs/products.png) | ![Customer Panel](docs/customer-panel.png) |
 
 ## Roadmap
 
